@@ -12,7 +12,7 @@ type DBConfig struct {
 
 func LoadDBConfig() DBConfig {
 	return DBConfig{
-		DSN: fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=disable TimeZone=Asia/Jakarta",
+		DSN: fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=disable TimeZone=UTC",
 			viper.GetString("DB_HOST"),
 			viper.GetString("DB_USERNAME"),
 			viper.GetString("DB_PASSWORD"),
