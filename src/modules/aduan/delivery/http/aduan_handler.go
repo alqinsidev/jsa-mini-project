@@ -27,7 +27,7 @@ func (h *AduanHandler) Fetch(c *fiber.Ctx) error {
 	reqQuery := helpers.GetRequestQuery(c)
 	result, totalData, err := h.AUsecase.Fetch(reqQuery)
 	if err != nil {
-		log.Error().Err(err).Msg("err")
+		log.Error().Err(err).Msg("error aduan handler, get table data")
 		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": "internal server error"})
 	}
 	return c.Status(http.StatusOK).JSON(fiber.Map{
@@ -48,7 +48,7 @@ func (h *AduanHandler) GetById(c *fiber.Ctx) error {
 	result, err := h.AUsecase.FindById(parsedUUID)
 
 	if err != nil {
-		log.Error().Err(err)
+		log.Error().Err(err).Msg("error aduan handler, get aduan by id")
 
 		switch err {
 		case domain.ErrAduanNotFound:
@@ -83,6 +83,7 @@ func (h *AduanHandler) UpdateStatus(c *fiber.Ctx) error {
 	}
 	result, err := h.AUsecase.UpdateStatus(update)
 	if err != nil {
+		log.Error().Err(err).Msg("error aduan handler, update status")
 		switch err {
 		case domain.ErrAduanNotFound:
 			return c.Status(http.StatusNotFound).JSON(fiber.Map{"error": err.Error(), "message": "fail", "code": http.StatusNotFound})
