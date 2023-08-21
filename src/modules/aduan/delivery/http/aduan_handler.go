@@ -18,8 +18,8 @@ func NewAduanHandler(r *fiber.App, AUsecase domain.AduanUsecase) {
 	handler := &AduanHandler{AUsecase: AUsecase}
 
 	r.Get("/aduan", handler.Fetch)
-	r.Get("/aduan/id/:id", handler.GetById)
 	r.Get("/aduan/summary", handler.FetchSummary)
+	r.Get("/aduan/:id", handler.GetById)
 	r.Put("/aduan", handler.UpdateStatus)
 }
 
