@@ -9,11 +9,9 @@ func PaginateResponse(query *domain.RequestQuery, data interface{}, totalData in
 	totalPages := int64(math.Ceil(float64(totalData) / float64(query.Limit)))
 
 	// Return an empty slice [] instead of nil if data is empty
-	var returnedData interface{}
+	var returnedData = data
 	if d, ok := data.([]domain.AduanTableResponse); ok && len(d) == 0 {
 		returnedData = make([]domain.AduanTableResponse, 0)
-	} else {
-		returnedData = data
 	}
 
 	return &domain.PaginateResponse{
